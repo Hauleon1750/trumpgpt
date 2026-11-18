@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" translate="no"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#f8f6ef"><meta name="description" content="An unofficial political comedy chat. Choose a mode and interview a fictional president. All answers are fictional."><link rel="manifest" href="./manifest.webmanifest"><link rel="apple-touch-icon" href="./assets/icon-180.png"><link rel="icon" href="./assets/icon-192.png"><link rel="stylesheet" href="./style.css"><title>TrumpGPT — An Unofficial AI Satire</title></head>
+<html lang="en" translate="no"><head><meta charset="utf-8"><meta name="referrer" content="no-referrer"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#f8f6ef"><meta name="description" content="An unofficial political comedy chat. Choose a mode and interview a fictional president. All answers are fictional."><link rel="manifest" href="./manifest.webmanifest"><link rel="apple-touch-icon" href="./assets/icon-180.png"><link rel="icon" href="./assets/icon-192.png"><link rel="stylesheet" href="./style.css"><title>TrumpGPT — An Unofficial AI Satire</title></head>
 <body>
 <svg class="defs" xmlns="http://www.w3.org/2000/svg"><defs>
 <symbol id="mic" viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="13" rx="3"/><path d="M5 10v2a7 7 0 0 0 14 0v-2M12 19v3m-4 0h8"/></symbol>
@@ -21,7 +21,20 @@
     <button type="button" data-lang="zh" lang="zh-Hans">中文</button>
   </div>
 </div>
+<div class="source-panel">
+  <div class="reply-source" role="group" aria-labelledby="source-label">
+    <span id="source-label" class="label" data-i18n>Reply source</span>
+    <div class="choices"><button type="button" data-source="offline" aria-pressed="true" data-i18n>Offline</button>
+    <button type="button" data-source="ai" aria-pressed="false" data-i18n>AI preview</button></div>
+  </div>
+  <div id="ai-settings" hidden>
+    <p data-i18n>The preview sends your question and up to three earlier exchanges to the server. Simulated replies are marked Mock.</p>
+    <label for="test-pass" data-i18n>Test passphrase</label>
+    <input id="test-pass" type="password" maxlength="256" autocomplete="off" autocapitalize="none" spellcheck="false">
+  </div>
+</div>
 <div class="body"><div id="thread" role="log" aria-label="Fictional conversation" tabindex="0"></div><div class="suggest"><span class="label"><span data-i18n>TRY ASKING</span></span><div id="prompts"></div></div>
+<div class="request-state"><span id="ai-state" role="status"></span><button id="retry" type="button" hidden data-i18n>Retry</button></div>
 <form id="composer"><label class="sr" for="question"><span data-i18n>Your question</span></label><textarea id="question" rows="1" maxlength="1000" placeholder="Ask the fictional president…"></textarea><button class="send" type="submit"><span data-i18n>Send</span> <svg><use href="#send"/></svg></button></form></div></section></main>
 <footer><span><b>ⓘ</b> <span data-i18n>Unofficial AI Satire. All answers are fictional.</span></span><button id="install"><span data-i18n>Install app</span> <span aria-hidden="true">↗</span></button></footer><p id="notice" role="status"></p></div>
 <dialog id="help"><h2><span data-i18n>Install TrumpGPT</span></h2><p><span data-i18n>On iPhone, open this page in Safari, tap Share, then Add to Home Screen. On Android, open the browser menu and choose Install app or Add to Home screen.</span></p><p><span data-i18n>Unofficial AI Satire. All answers are fictional.</span></p><form method="dialog"><button><span data-i18n>Close</span></button></form></dialog>

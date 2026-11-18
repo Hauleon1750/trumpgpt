@@ -103,10 +103,14 @@ export function createResponder(random = Math.random) {
   };
 }
 
+export function replyLabel(provider) {
+  return provider === "mock" ? "Mock reply" : "AI reply";
+}
+
 export function transcript(mode, messages, language = "en") {
-  const turns = messages.map(({user, text, preset}) => {
-    const label = displayText(user ? "Question" : "Fictional president", language);
-    const body = displayText(text, language, "\n", !user || preset === true);
+  const turns = messages.map(({user, text, preset, translation, provider}) => {
+    const label = displayText(provider ? replyLabel(provider) : user ? "Question" : "Fictional president", language);
+    const body = displayText(text, language, "\n", !user || preset === true, translation);
     return label + (language === "zh" ? "：" : ": ") + body;
   });
   return ["TrumpGPT — " + displayText(disclaimer, language, "\n"),

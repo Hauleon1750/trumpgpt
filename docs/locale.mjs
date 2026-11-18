@@ -1,5 +1,20 @@
 // Exact English source keys keep translations attached to their lines when pools are shuffled.
 export const chinese = new Map([
+  ["Open the preview over HTTPS to use AI replies.", "请通过 HTTPS 打开测试站后使用 AI 回复。"],
+  ["Reply source", "回复方式"],
+  ["Offline", "离线"],
+  ["AI preview", "AI 测试"],
+  ["Test passphrase", "测试口令"],
+  ["The preview sends your question and up to three earlier exchanges to the server. Simulated replies are marked Mock.", "测试模式会把问题和最多三轮前文发送到服务端。模拟回复标有「模拟」。"],
+  ["Mock reply", "模拟回复"],
+  ["AI reply", "AI 回复"],
+  ["Waiting for a reply…", "正在等待回复…"],
+  ["Retry", "重试"],
+  ["Check the test passphrase and retry.", "请检查测试口令后重试。"],
+  ["The call limit has been reached. Offline replies are available.", "已达到调用限额，可切换到离线回复。"],
+  ["The request timed out. Retry or choose Offline.", "请求超时。可重试或切换到离线回复。"],
+  ["The AI service is unavailable. Retry or choose Offline.", "AI 服务暂不可用。可重试或切换到离线回复。"],
+  ["The question or context exceeds the allowed limits.", "问题或上下文超过长度限制。"],
   // Presidential Q&A
   ["Presidential Q&A",
    "总统问答"],
@@ -144,8 +159,7 @@ export function preferredLanguage(value) {
 }
 
 // Free-form questions keep their original wording in every view.
-export function variants(text, language, authored = true) {
-  const translation = authored && chinese.get(text);
+export function variants(text, language, authored = true, translation = authored && chinese.get(text)) {
   if (!translation) return [{lang: authored ? "en" : "", text}];
   const english = {lang: "en", text};
   const mandarin = {lang: "zh-Hans", text: translation};
@@ -154,6 +168,6 @@ export function variants(text, language, authored = true) {
   return [english, mandarin];
 }
 
-export function displayText(text, language, separator = " / ", authored = true) {
-  return variants(text, language, authored).map(part => part.text).join(separator);
+export function displayText(text, language, separator = " / ", authored = true, translation) {
+  return variants(text, language, authored, translation).map(part => part.text).join(separator);
 }

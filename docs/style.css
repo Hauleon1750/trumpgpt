@@ -60,3 +60,18 @@
   .mode { min-width: 0; overflow-wrap: anywhere; }
   #thread { max-height: 42svh; }
 }
+
+.source-panel { padding: 8px 22px; border-bottom: 1px solid var(--line); }
+.reply-source { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 6px; }
+#ai-settings { margin-block: 8px; font-size: 14px; line-height: 1.5; }
+#ai-settings label { display: block; margin: 10px 0 4px; }
+#test-pass { font-size: 16px; min-height: 44px; width: min(100%, 28rem); box-sizing: border-box; }
+.request-state { font-size: 14px; color: var(--red); }
+.request-state:has(#retry:not([hidden])), .request-state:has(#ai-state .variant:not(:empty)) { margin-bottom: 8px; }
+#retry { min-height: 44px; margin-left: 8px; padding: 4px 12px; }
+button:disabled { cursor: wait; opacity: .55; }
+@media (max-width:610px) {
+  .source-panel { padding-inline: 14px; }
+  .reply-source .choices { flex-wrap: wrap; }
+  #ai-settings p .variant { display: block; margin-inline-start: 0; }
+}

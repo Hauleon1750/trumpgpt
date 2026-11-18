@@ -57,15 +57,15 @@ test("service worker installs local assets, serves an offline launch, and isolat
     match(request) {return entries.get(request.url || request);}
   };
   const caches = {
-    open: async () => cache, keys: async () => [prefix + "v1.1", prefix + "v1", "other-project"],
+    open: async () => cache, keys: async () => [prefix + "v2-preview-1", prefix + "v1.1", prefix + "v1", "other-project"],
     delete: async key => deleted.push(key)
   };
   const self = {registration:{scope}, skipWaiting() {}, clients:{claim() {}}, addEventListener(type,fn){handlers[type] = fn;}};
   vm.runInNewContext((await read("sw.js")).toString(), {self, caches, URL, Request, fetch:async () => {throw Error("offline");}});
   await new Promise((resolve,reject) => handlers.install({waitUntil: promise => promise.then(resolve,reject)}));
   await new Promise((resolve,reject) => handlers.activate({waitUntil: promise => promise.then(resolve,reject)}));
-  assert.deepEqual(deleted,[prefix + "v1"]);
-  for (const path of ["","?from=homescreen","app.js","comedy.mjs","locale.mjs","style.css","assets/press-mics.png"]) {
+  assert.deepEqual(deleted,[prefix + "v1.1", prefix + "v1"]);
+  for (const path of ["","?from=homescreen","app.js","comedy.mjs","locale.mjs","ai-chat.mjs","chat-protocol.mjs","style.css","assets/press-mics.png"]) {
     const request = {url:scope + path, method:"GET", mode:path.includes(".") ? "cors" : "navigate"};
     const body = await new Promise(resolve => handlers.fetch({request, respondWith:resolve}));
     assert.ok(body.length);

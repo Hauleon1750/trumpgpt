@@ -1,9 +1,17 @@
-import {modes, createResponder, transcript} from "./comedy.mjs";
+import {modes, createResponder, transcript, replyLabel} from "./comedy.mjs";
 import {variants, displayText, preferredLanguage} from "./locale.mjs";
+
+import {errors, recentHistory, requestReply} from "./ai-chat.mjs";
 
 const $ = id => document.getElementById(id);
 const answer = createResponder();
-const histories = Object.fromEntries(Object.entries(modes).map(([key, mode]) => [key, [{user:false, text:mode.greeting}]]));
+const histories = {};
+for (const [mode, config] of Object.entries(modes)) {
+  for (const source of ["offline","ai"]) histories[source + "/" + mode] = [{user:false, text:config.greeting}];
+}
+const requests = new Map();
+let source = "offline";
+const sessionKey = () => source + "/" + current;
 const drafts = {};
 const preferenceKey = "trumpgpt.displayLanguage";
 let language = "both";
@@ -29,8 +37,8 @@ function element(tag, className, text) {
   return node;
 }
 
-function renderText(node, text, authored = true) {
-  const parts = variants(text, language, authored).map(({lang, text}) => {
+function renderText(node, text, authored = true, translation) {
+  const parts = variants(text, language, authored, translation).map(({lang, text}) => {
     const part = element("span", "variant", text);
     part.lang = lang;
     return part;
@@ -43,7 +51,7 @@ function setStatus(text) {
   renderText($("notice"), text);
 }
 
-function showMessage({user, text, preset}) {
+function showMessage({user, text, preset, translation, provider}) {
   const row = element("div", user ? "msg user" : "msg");
   const avatar = element("span", "avatar");
   avatar.setAttribute("aria-hidden", "true");
@@ -51,8 +59,9 @@ function showMessage({user, text, preset}) {
   const content = element("div", "content");
   const who = element("span", "who", "TRUMPGPT");
   if (user) renderText(who, "YOU");
+  if (provider) renderText(who, replyLabel(provider));
   const body = element("p", "answer");
-  renderText(body, text, !user || preset === true);
+  renderText(body, text, !user || preset === true, translation);
   content.append(who, body);
   row.append(avatar, content);
   $("thread").append(row);
@@ -60,7 +69,7 @@ function showMessage({user, text, preset}) {
 
 function renderThread() {
   $("thread").replaceChildren();
-  histories[current].forEach(showMessage);
+  histories[sessionKey()].forEach(showMessage);
 }
 
 function renderPrompts() {
@@ -73,30 +82,90 @@ function renderPrompts() {
   }
 }
 
-function selectMode(key) {
-  drafts[current] = $("question").value;
+function selectMode(key, nextSource = source) {
+  drafts[sessionKey()] = $("question").value;
   current = key;
-  $("question").value = drafts[key] || "";
+  source = nextSource;
+  $("ai-settings").hidden = source !== "ai";
+  for (const button of document.querySelectorAll("[data-source]")) {
+    button.setAttribute("aria-pressed", String(button.dataset.source === source));
+  }
+  $("question").value = drafts[sessionKey()] || "";
   for (const button of $("modes").children) button.setAttribute("aria-pressed", String(button.dataset.mode === key));
   renderPrompts();
   renderThread();
   $("thread").scrollTop = $("thread").scrollHeight;
   setStatus("");
+  renderRequest();
+}
+
+function renderRequest() {
+  const job = requests.get(sessionKey());
+  const busy = job?.busy === true;
+  $("composer").querySelector(".send").disabled = busy;
+  for (const button of $("prompts").children) button.disabled = busy;
+  $("retry").hidden = !job || busy;
+  renderText($("ai-state"), job ? (busy ? "Waiting for a reply…" : errors[job.error]) : "");
+}
+
+async function runRequest(key, job) {
+  if (job.busy) return;
+  job.busy = true;
+  renderRequest();
+  try {
+    const message = await requestReply(job.mode, job.text, job.history, $("test-pass").value);
+    histories[key].push(message);
+    requests.delete(key);
+    if (sessionKey() === key) {
+      showMessage(message);
+      $("thread").scrollTop = $("thread").scrollHeight;
+    }
+  } catch (error) {
+    job.error = error.message;
+  } finally {
+    job.busy = false;
+    if (sessionKey() === key) renderRequest();
+  }
+}
+$("retry").onclick = () => {
+  const key = sessionKey();
+  const job = requests.get(key);
+  if (job) void runRequest(key, job);
+};
+for (const button of document.querySelectorAll("[data-source]")) {
+  button.onclick = () => selectMode(current, button.dataset.source);
 }
 
 function submit(question, preset = false) {
+  const key = sessionKey();
+  if (requests.get(key)?.busy) return false;
   const text = question.trim();
   if (!text) {
     setStatus("Enter a question first.");
     $("question").focus();
-    return;
+    return false;
   }
   setStatus("");
-  for (const message of [{user:true, text, preset}, {user:false, text:answer(current, text)}]) {
-    histories[current].push(message);
-    showMessage(message);
+  if (source === "ai" && !$("test-pass").value) {
+    setStatus(errors.access);
+    $("test-pass").focus();
+    return false;
+  }
+  const userMessage = {user:true, text, preset};
+  const history = histories[key];
+  history.push(userMessage);
+  showMessage(userMessage);
+  if (source === "offline") {
+    const reply = {user:false, text:answer(current, text)};
+    history.push(reply);
+    showMessage(reply);
+  } else {
+    const job = {mode:current, text, history:recentHistory(history)};
+    requests.set(key,job);
+    void runRequest(key,job);
   }
   $("thread").scrollTop = $("thread").scrollHeight;
+  return true;
 }
 
 for (const [key, mode] of Object.entries(modes)) {
@@ -136,6 +205,7 @@ function renderLanguage() {
   if (atEnd) thread.scrollTop = thread.scrollHeight;
   else if (anchor >= 0) thread.scrollTop += thread.children[anchor].getBoundingClientRect().top - thread.getBoundingClientRect().top;
   setStatus(statusText);
+  renderRequest();
 }
 for (const button of $("languages").querySelectorAll("button")) {
   button.onclick = () => {
@@ -149,8 +219,7 @@ renderLanguage();
 
 $("composer").onsubmit = event => {
   event.preventDefault();
-  submit($("question").value);
-  $("question").value = "";
+  if (submit($("question").value)) $("question").value = "";
 };
 $("question").onkeydown = event => {
   if (event.key === "Enter" && !event.shiftKey && !event.isComposing && event.keyCode !== 229) {
@@ -160,7 +229,7 @@ $("question").onkeydown = event => {
 };
 
 $("copyBtn").onclick = async () => {
-  const text = transcript(current, histories[current], language);
+  const text = transcript(current, histories[sessionKey()], language);
   try {
     await navigator.clipboard.writeText(text);
   } catch {
