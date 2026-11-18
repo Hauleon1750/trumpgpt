@@ -1,5 +1,7 @@
 // Exact English source keys keep translations attached to their lines when pools are shuffled.
 export const chinese = new Map([
+  ["Presidential Archives", "总统言论档案馆 · 真实言论"],
+  ["Verified quotations", "真实引言"],
   // Presidential Q&A
   ["Presidential Q&A",
    "总统问答"],

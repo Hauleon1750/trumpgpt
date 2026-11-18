@@ -1,0 +1,460 @@
+{
+  "schemaVersion": 1,
+  "records": [
+    {
+      "id": "2018-carrots-recount",
+      "english": "Unfortunately, Carrots refused to concede and demanded a recount, and we’re still fighting with Carrots.",
+      "translation": "可惜，「胡萝卜」不肯认输，还要求重新计票；我们到现在还在跟它争呢。",
+      "speaker": "Donald J. Trump",
+      "kind": "speech",
+      "date": "2018-11-20",
+      "publisher": "The White House",
+      "platform": "Trump White House Archives (NARA)",
+      "source": "https://trumpwhitehouse.archives.gov/briefings-statements/remarks-president-trump-national-thanksgiving-turkey-pardoning-ceremony-2/",
+      "document": {
+        "en": "2018 Thanksgiving turkey pardon",
+        "zh": "2018 年感恩节火鸡赦免仪式"
+      },
+      "context": {
+        "en": "At the turkey pardon, Trump joked about a White House website vote between two turkeys, Peas and Carrots.",
+        "zh": "在火鸡赦免仪式上，特朗普拿白宫网站上两只火鸡「豌豆」和「胡萝卜」之间的投票开玩笑。"
+      },
+      "topics": {
+        "en": [
+          "turkey",
+          "turkeys",
+          "recount",
+          "carrots",
+          "vote",
+          "thanksgiving"
+        ],
+        "zh": [
+          "火鸡",
+          "重新计票",
+          "计票",
+          "胡萝卜",
+          "投票",
+          "感恩节"
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "checked": "2026-11-18"
+      }
+    },
+    {
+      "id": "2018-peas-pardon",
+      "english": "Peas, I hereby grant you a full pardon!",
+      "translation": "「豌豆」，我在此完全赦免你！",
+      "speaker": "Donald J. Trump",
+      "kind": "speech",
+      "date": "2018-11-20",
+      "publisher": "The White House",
+      "platform": "Trump White House Archives (NARA)",
+      "source": "https://trumpwhitehouse.archives.gov/briefings-statements/remarks-president-trump-national-thanksgiving-turkey-pardoning-ceremony-2/",
+      "document": {
+        "en": "2018 Thanksgiving turkey pardon",
+        "zh": "2018 年感恩节火鸡赦免仪式"
+      },
+      "context": {
+        "en": "After announcing pardons for both birds, Trump addressed Peas directly.",
+        "zh": "在宣布两只火鸡都将获赦后，特朗普直接对着「豌豆」说了这句话。"
+      },
+      "topics": {
+        "en": [
+          "peas",
+          "pardon",
+          "turkey",
+          "thanksgiving"
+        ],
+        "zh": [
+          "豌豆",
+          "赦免",
+          "火鸡",
+          "感恩节"
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "checked": "2026-11-18"
+      }
+    },
+    {
+      "id": "2017-rest-easy",
+      "english": "So, Tater and Tot, you can rest easy.",
+      "translation": "所以，「薯块」和「薯球」，你们可以放心了。",
+      "speaker": "Donald J. Trump",
+      "kind": "speech",
+      "date": "2017-11-21",
+      "publisher": "The White House",
+      "platform": "Trump White House Archives (NARA)",
+      "source": "https://trumpwhitehouse.archives.gov/briefings-statements/remarks-president-trump-national-thanksgiving-turkey-pardoning-ceremony/",
+      "document": {
+        "en": "2017 Thanksgiving turkey pardon",
+        "zh": "2017 年感恩节火鸡赦免仪式"
+      },
+      "context": {
+        "en": "Tater and Tot were turkeys pardoned by Barack Obama the year before. Trump joked about whether their pardons could be revoked.",
+        "zh": "「薯块」和「薯球」是奥巴马前一年赦免的两只火鸡。特朗普在仪式上打趣，说起能不能撤销它们的赦免。"
+      },
+      "topics": {
+        "en": [
+          "tater",
+          "tot",
+          "obama",
+          "pardons",
+          "turkey"
+        ],
+        "zh": [
+          "薯块",
+          "薯球",
+          "奥巴马",
+          "赦免",
+          "火鸡"
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "checked": "2026-11-18"
+      }
+    },
+    {
+      "id": "2017-strange-birds",
+      "english": "We’ve hosted dozens of incredible world leaders, members of Congress, and, along the way, a few very strange birds.",
+      "translation": "我们接待过几十位了不起的世界领导人，也接待过国会议员；这期间，还来了几只相当古怪的鸟。",
+      "speaker": "Donald J. Trump",
+      "kind": "speech",
+      "date": "2017-11-21",
+      "publisher": "The White House",
+      "platform": "Trump White House Archives (NARA)",
+      "source": "https://trumpwhitehouse.archives.gov/briefings-statements/remarks-president-trump-national-thanksgiving-turkey-pardoning-ceremony/",
+      "document": {
+        "en": "2017 Thanksgiving turkey pardon",
+        "zh": "2017 年感恩节火鸡赦免仪式"
+      },
+      "context": {
+        "en": "Trump listed White House visitors before introducing Drumstick, the turkey being honored in the Rose Garden.",
+        "zh": "在玫瑰园介绍当天的主角、火鸡 Drumstick 之前，特朗普先数起了白宫接待过的客人。"
+      },
+      "topics": {
+        "en": [
+          "visitors",
+          "birds",
+          "drumstick",
+          "rose garden"
+        ],
+        "zh": [
+          "访客",
+          "鸟",
+          "玫瑰园",
+          "来宾"
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "checked": "2026-11-18"
+      }
+    },
+    {
+      "id": "2021-luck",
+      "english": "We extend our best wishes, and we also want them to have luck — a very important word.",
+      "translation": "我们送上最好的祝愿，也希望他们有好运——这个词很重要。",
+      "speaker": "Donald J. Trump",
+      "kind": "speech",
+      "date": "2021-01-19",
+      "publisher": "The White House",
+      "platform": "Trump White House Archives (NARA)",
+      "source": "https://trumpwhitehouse.archives.gov/briefings-statements/remarks-president-trump-farewell-address-nation/",
+      "document": {
+        "en": "Farewell Address to the Nation",
+        "zh": "向全国发表的告别演说"
+      },
+      "context": {
+        "en": "In his farewell address, “them” refers to the incoming administration.",
+        "zh": "在告别演说中，「他们」指即将上任的新一届政府。"
+      },
+      "topics": {
+        "en": [
+          "luck",
+          "transition",
+          "farewell",
+          "wishes"
+        ],
+        "zh": [
+          "好运",
+          "运气",
+          "交接",
+          "告别",
+          "祝愿"
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "checked": "2026-11-18"
+      }
+    },
+    {
+      "id": "2021-skyline",
+      "english": "I had not spent my career as a politician, but as a builder looking at open skylines and imagining infinite possibilities.",
+      "translation": "我过去的职业不是从政，而是搞建筑，望着开阔的天际线，想象无限的可能。",
+      "speaker": "Donald J. Trump",
+      "kind": "speech",
+      "date": "2021-01-19",
+      "publisher": "The White House",
+      "platform": "Trump White House Archives (NARA)",
+      "source": "https://trumpwhitehouse.archives.gov/briefings-statements/remarks-president-trump-farewell-address-nation/",
+      "document": {
+        "en": "Farewell Address to the Nation",
+        "zh": "向全国发表的告别演说"
+      },
+      "context": {
+        "en": "Looking back at his entry into politics, Trump described how he saw his earlier career.",
+        "zh": "特朗普回顾自己步入政坛的经历，谈到他如何看待从政前的职业。"
+      },
+      "topics": {
+        "en": [
+          "builder",
+          "buildings",
+          "skyline",
+          "skylines",
+          "career",
+          "architecture"
+        ],
+        "zh": [
+          "建筑",
+          "天际线",
+          "职业",
+          "从政"
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "checked": "2026-11-18"
+      }
+    },
+    {
+      "id": "2020-vacuum",
+      "english": "I think every one of the military leaders here knows that space is a vacuum, but we’re not operating in a vacuum.",
+      "translation": "我想，在场的军事领导人都知道，太空是真空，但我们的行动并非在真空中进行。",
+      "speaker": "Mike Pence",
+      "kind": "speech",
+      "date": "2020-12-18",
+      "publisher": "The White House",
+      "platform": "Trump White House Archives (NARA)",
+      "source": "https://trumpwhitehouse.archives.gov/briefings-statements/remarks-vice-president-pence-space-forces-1st-birthday-celebration/",
+      "document": {
+        "en": "First anniversary of the Space Force",
+        "zh": "太空军成立一周年纪念活动"
+      },
+      "context": {
+        "en": "Vice President Pence used the two senses of “vacuum” while discussing international competition in space.",
+        "zh": "副总统彭斯谈到太空领域的国际竞争，用「真空」一词同时指物理环境和与外界隔绝的状态。"
+      },
+      "topics": {
+        "en": [
+          "vacuum",
+          "space force",
+          "pence",
+          "space"
+        ],
+        "zh": [
+          "真空",
+          "太空军",
+          "彭斯",
+          "太空"
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "checked": "2026-11-18"
+      }
+    },
+    {
+      "id": "2025-mars",
+      "english": "And we will pursue our manifest destiny into the stars, launching American astronauts to plant the Stars and Stripes on the planet Mars.",
+      "translation": "我们还将把追寻「天定命运」的脚步迈向星空，把美国宇航员送上太空，去火星插上星条旗。",
+      "speaker": "Donald J. Trump",
+      "kind": "speech",
+      "date": "2025-01-20",
+      "publisher": "The White House",
+      "platform": "WhiteHouse.gov",
+      "source": "https://www.whitehouse.gov/remarks/2025/01/the-inaugural-address/",
+      "document": {
+        "en": "2025 Inaugural Address",
+        "zh": "2025 年就职演说"
+      },
+      "context": {
+        "en": "In his second inaugural address, Trump presented a future ambition for American space exploration.",
+        "zh": "特朗普在第二次就职演说中谈到了美国太空探索的未来目标。"
+      },
+      "topics": {
+        "en": [
+          "mars",
+          "astronauts",
+          "space",
+          "flag"
+        ],
+        "zh": [
+          "火星",
+          "航天员",
+          "宇航员",
+          "太空",
+          "星条旗"
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "checked": "2026-11-18"
+      }
+    },
+    {
+      "id": "2025-impossible",
+      "english": "In America, the impossible is what we do best.",
+      "translation": "在美国，我们最擅长的就是做不可能的事。",
+      "speaker": "Donald J. Trump",
+      "kind": "speech",
+      "date": "2025-01-20",
+      "publisher": "The White House",
+      "platform": "WhiteHouse.gov",
+      "source": "https://www.whitehouse.gov/remarks/2025/01/the-inaugural-address/",
+      "document": {
+        "en": "2025 Inaugural Address",
+        "zh": "2025 年就职演说"
+      },
+      "context": {
+        "en": "Near the end of the address, Trump connected his return to office with the idea of overcoming the impossible.",
+        "zh": "临近演说结尾，特朗普从自己重返白宫谈到战胜看似不可能之事。"
+      },
+      "topics": {
+        "en": [
+          "impossible",
+          "comeback",
+          "inauguration"
+        ],
+        "zh": [
+          "不可能",
+          "重返",
+          "就职"
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "checked": "2026-11-18"
+      }
+    },
+    {
+      "id": "2017-two-rules",
+      "english": "We will follow two simple rules: Buy American and Hire American.",
+      "translation": "我们将遵循两条简单的原则：买美国货，雇美国人。",
+      "speaker": "Donald J. Trump",
+      "kind": "prepared",
+      "date": "2017-01-20",
+      "publisher": "The White House",
+      "platform": "Trump White House Archives (NARA)",
+      "source": "https://trumpwhitehouse.archives.gov/briefings-statements/the-inaugural-address/",
+      "document": {
+        "en": "2017 Inaugural Address · prepared text",
+        "zh": "2017 年就职演说 · 预备讲稿"
+      },
+      "context": {
+        "en": "The first inaugural text, marked “as prepared for delivery,” sets out priorities on purchasing and employment.",
+        "zh": "第一份就职演说文本注明为预备讲稿，这里谈的是采购和就业方面的优先事项。"
+      },
+      "topics": {
+        "en": [
+          "jobs",
+          "hire",
+          "hiring",
+          "buy american",
+          "employment"
+        ],
+        "zh": [
+          "就业",
+          "招聘",
+          "雇用",
+          "美国货",
+          "采购"
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "checked": "2026-11-18"
+      }
+    },
+    {
+      "id": "2017-empty-talk",
+      "english": "The time for empty talk is over.",
+      "translation": "空谈的时候已经过去了。",
+      "speaker": "Donald J. Trump",
+      "kind": "prepared",
+      "date": "2017-01-20",
+      "publisher": "The White House",
+      "platform": "Trump White House Archives (NARA)",
+      "source": "https://trumpwhitehouse.archives.gov/briefings-statements/the-inaugural-address/",
+      "document": {
+        "en": "2017 Inaugural Address · prepared text",
+        "zh": "2017 年就职演说 · 预备讲稿"
+      },
+      "context": {
+        "en": "In the prepared inaugural text, this line introduces a call for action.",
+        "zh": "在就职演说预备讲稿里，这句话引出对行动的呼吁。"
+      },
+      "topics": {
+        "en": [
+          "empty talk",
+          "action",
+          "inaugural"
+        ],
+        "zh": [
+          "空谈",
+          "行动",
+          "就职"
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "checked": "2026-11-18"
+      }
+    },
+    {
+      "id": "2025-paper-straws",
+      "english": "Paper straws often come individually wrapped in plastic, undermining the environmental argument for their use.",
+      "translation": "纸吸管常常是一根一根用塑料包装的，这削弱了出于环保考虑使用纸吸管的理由。",
+      "speaker": "The White House",
+      "kind": "institutional",
+      "date": "2025-02-10",
+      "publisher": "The White House",
+      "platform": "WhiteHouse.gov",
+      "source": "https://www.whitehouse.gov/fact-sheets/2025/02/fact-sheet-president-donald-j-trump-ends-the-procurement-and-forced-use-of-paper-straws/",
+      "document": {
+        "en": "Fact sheet on federal purchases of paper straws",
+        "zh": "关于联邦政府采购纸吸管的情况说明"
+      },
+      "context": {
+        "en": "The White House gave this argument in a fact sheet about federal straw procurement. The wording is attributed to the institution.",
+        "zh": "白宫在一份关于联邦政府采购吸管的情况说明中提出了这一理由。这是白宫的文件表述。"
+      },
+      "topics": {
+        "en": [
+          "straw",
+          "straws",
+          "paper",
+          "plastic",
+          "packaging",
+          "procurement"
+        ],
+        "zh": [
+          "吸管",
+          "纸吸管",
+          "塑料",
+          "包装",
+          "采购"
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "checked": "2026-11-18"
+      }
+    }
+  ]
+}

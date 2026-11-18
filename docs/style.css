@@ -60,3 +60,9 @@
   .mode { min-width: 0; overflow-wrap: anywhere; }
   #thread { max-height: 42svh; }
 }
+
+.archive-entry { text-align:right; border-bottom:1px solid var(--line); }
+.archive-entry a { display:inline-flex; flex-wrap:wrap; align-items:center; gap:4px; min-height:44px; color:#254b46; font-weight:600; font-size:14px; }
+.archive-mode { text-decoration:none; color:#254b46; }
+#modes { grid-template-columns:repeat(4,minmax(0,1fr)); }
+@media(max-width:850px) { #modes { grid-template-columns:repeat(2,minmax(0,1fr)); } }

@@ -77,7 +77,7 @@ function selectMode(key) {
   drafts[current] = $("question").value;
   current = key;
   $("question").value = drafts[key] || "";
-  for (const button of $("modes").children) button.setAttribute("aria-pressed", String(button.dataset.mode === key));
+  for (const button of $("modes").querySelectorAll("button")) button.setAttribute("aria-pressed", String(button.dataset.mode === key));
   renderPrompts();
   renderThread();
   $("thread").scrollTop = $("thread").scrollHeight;
@@ -115,6 +115,15 @@ for (const [key, mode] of Object.entries(modes)) {
   button.onclick = () => selectMode(key);
   $("modes").append(button);
 }
+
+const archiveMode = element("a", "mode archive-mode");
+archiveMode.href = "./archives.html#ask";
+const archiveBadge = element("span", "mode-icon", "¶");
+archiveBadge.setAttribute("aria-hidden", "true");
+const archiveName = element("span", "name");
+labels.push([archiveName, "Verified quotations"]);
+archiveMode.append(archiveBadge, archiveName);
+$("modes").append(archiveMode);
 
 function renderLanguage() {
   const thread = $("thread");

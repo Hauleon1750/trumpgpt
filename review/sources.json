@@ -1,0 +1,65 @@
+{
+  "https://trumpwhitehouse.archives.gov/briefings-statements/remarks-president-trump-national-thanksgiving-turkey-pardoning-ceremony-2/": {
+    "date": "2018-11-20",
+    "speaker": "Donald J. Trump",
+    "kind": "speech",
+    "publisher": "The White House",
+    "platform": "Trump White House Archives (NARA)",
+    "attributionNote": "The President opens the ceremony. Peas and Carrots are the two turkeys in the White House web vote.",
+    "rights": "https://trumpwhitehouse.archives.gov/copyright/"
+  },
+  "https://trumpwhitehouse.archives.gov/briefings-statements/remarks-president-trump-national-thanksgiving-turkey-pardoning-ceremony/": {
+    "date": "2017-11-21",
+    "speaker": "Donald J. Trump",
+    "kind": "speech",
+    "publisher": "The White House",
+    "platform": "Trump White House Archives (NARA)",
+    "attributionNote": "The President speaks throughout. Tater and Tot are the previous year’s turkeys; the guest is Drumstick.",
+    "rights": "https://trumpwhitehouse.archives.gov/copyright/"
+  },
+  "https://trumpwhitehouse.archives.gov/briefings-statements/remarks-president-trump-farewell-address-nation/": {
+    "date": "2021-01-19",
+    "speaker": "Donald J. Trump",
+    "kind": "speech",
+    "publisher": "The White House",
+    "platform": "Trump White House Archives (NARA)",
+    "attributionNote": "In the President’s opening remarks “them” refers to the incoming administration. The builder passage describes his earlier career.",
+    "rights": "https://trumpwhitehouse.archives.gov/copyright/"
+  },
+  "https://trumpwhitehouse.archives.gov/briefings-statements/remarks-vice-president-pence-space-forces-1st-birthday-celebration/": {
+    "date": "2020-12-18",
+    "speaker": "Mike Pence",
+    "kind": "speech",
+    "publisher": "The White House",
+    "platform": "Trump White House Archives (NARA)",
+    "attributionNote": "Marked THE VICE PRESIDENT. The vacuum line is Pence’s own wordplay about space competition, outside his quotations of others.",
+    "rights": "https://trumpwhitehouse.archives.gov/copyright/"
+  },
+  "https://www.whitehouse.gov/remarks/2025/01/the-inaugural-address/": {
+    "date": "2025-01-20",
+    "speaker": "Donald J. Trump",
+    "kind": "speech",
+    "publisher": "The White House",
+    "platform": "WhiteHouse.gov",
+    "attributionNote": "Marked THE PRESIDENT. Mars is a stated future ambition. The impossible line follows discussion of his political comeback.",
+    "rights": "https://www.whitehouse.gov/copyright/"
+  },
+  "https://trumpwhitehouse.archives.gov/briefings-statements/the-inaugural-address/": {
+    "date": "2017-01-20",
+    "speaker": "Donald J. Trump",
+    "kind": "prepared",
+    "publisher": "The White House",
+    "platform": "Trump White House Archives (NARA)",
+    "attributionNote": "Marked AS PREPARED FOR DELIVERY. Publish as prepared text, without inferring an audio-verbatim match.",
+    "rights": "https://trumpwhitehouse.archives.gov/copyright/"
+  },
+  "https://www.whitehouse.gov/fact-sheets/2025/02/fact-sheet-president-donald-j-trump-ends-the-procurement-and-forced-use-of-paper-straws/": {
+    "date": "2025-02-10",
+    "speaker": "The White House",
+    "kind": "institutional",
+    "publisher": "The White House",
+    "platform": "WhiteHouse.gov",
+    "attributionNote": "The sentence belongs to the explanatory fact sheet, outside its quotation of Trump; credit the White House institution.",
+    "rights": "https://www.whitehouse.gov/copyright/"
+  }
+}

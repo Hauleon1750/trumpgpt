@@ -1,7 +1,7 @@
 const scope = self.registration.scope;
 const prefix = "trumpgpt:" + encodeURIComponent(scope) + ":";
-const version = prefix + "v1.1";
-const files = ["./", "./index.html", "./style.css", "./app.js", "./comedy.mjs", "./locale.mjs", "./manifest.webmanifest", "./assets/press-mics.png", "./assets/icon-180.png", "./assets/icon-192.png", "./assets/icon-512.png"];
+const version = prefix + "v1.2-archives-1";
+const files = ["./", "./index.html", "./style.css", "./app.js", "./archives.html", "./x-feed.html", "./archives.css", "./archives.mjs", "./archive-data.mjs", "./data/quotes.json", "./comedy.mjs", "./locale.mjs", "./manifest.webmanifest", "./assets/press-mics.png", "./assets/icon-180.png", "./assets/icon-192.png", "./assets/icon-512.png"];
 self.addEventListener("install", event => {
   event.waitUntil((async () => {
     const cache = await caches.open(version);
@@ -27,7 +27,11 @@ self.addEventListener("fetch", event => {
     if (cached) return cached;
     try { return await fetch(request); }
     catch (error) {
-      if (request.mode === "navigate") return await cache.match(new URL("./index.html", scope).href);
+      if (request.mode === "navigate") {
+        const page = new URL(request.url);
+        page.search = "";
+        return await cache.match(page.href) || await cache.match(new URL("./index.html",scope).href);
+      }
       throw error;
     }
   })());
