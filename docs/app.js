@@ -1,11 +1,17 @@
 import {modes, createResponder, transcript} from "./comedy.mjs";
+import {variants, displayText, preferredLanguage} from "./locale.mjs";
 
 const $ = id => document.getElementById(id);
 const answer = createResponder();
 const histories = Object.fromEntries(Object.entries(modes).map(([key, mode]) => [key, [{user:false, text:mode.greeting}]]));
 const drafts = {};
+const preferenceKey = "trumpgpt.displayLanguage";
+let language = "both";
+try { language = preferredLanguage(localStorage.getItem(preferenceKey)); } catch {}
 let current = "qa";
+let statusText = "";
 let installPrompt;
+const labels = Array.from(document.querySelectorAll("[data-i18n]"), node => [node, node.textContent]);
 
 function icon(name) {
   const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -23,15 +29,48 @@ function element(tag, className, text) {
   return node;
 }
 
-function showMessage({user, text}) {
+function renderText(node, text, authored = true) {
+  const parts = variants(text, language, authored).map(({lang, text}) => {
+    const part = element("span", "variant", text);
+    part.lang = lang;
+    return part;
+  });
+  node.replaceChildren(...parts);
+}
+
+function setStatus(text) {
+  statusText = text;
+  renderText($("notice"), text);
+}
+
+function showMessage({user, text, preset}) {
   const row = element("div", user ? "msg user" : "msg");
   const avatar = element("span", "avatar");
   avatar.setAttribute("aria-hidden", "true");
-  avatar.append(user ? "Q" : icon("mic"));
+  avatar.append(user ? (language === "zh" ? "问" : "Q") : icon("mic"));
   const content = element("div", "content");
-  content.append(element("span", "who", user ? "YOU" : "TRUMPGPT"), element("p", "answer", text));
+  const who = element("span", "who", "TRUMPGPT");
+  if (user) renderText(who, "YOU");
+  const body = element("p", "answer");
+  renderText(body, text, !user || preset === true);
+  content.append(who, body);
   row.append(avatar, content);
   $("thread").append(row);
+}
+
+function renderThread() {
+  $("thread").replaceChildren();
+  histories[current].forEach(showMessage);
+}
+
+function renderPrompts() {
+  $("prompts").replaceChildren();
+  for (const prompt of modes[current].prompts) {
+    const button = element("button", "");
+    renderText(button, prompt);
+    button.onclick = () => submit(prompt, true);
+    $("prompts").append(button);
+  }
 }
 
 function selectMode(key) {
@@ -39,27 +78,21 @@ function selectMode(key) {
   current = key;
   $("question").value = drafts[key] || "";
   for (const button of $("modes").children) button.setAttribute("aria-pressed", String(button.dataset.mode === key));
-  $("thread").replaceChildren();
-  histories[key].forEach(showMessage);
+  renderPrompts();
+  renderThread();
   $("thread").scrollTop = $("thread").scrollHeight;
-  $("notice").textContent = "";
-  $("prompts").replaceChildren();
-  for (const prompt of modes[key].prompts) {
-    const button = element("button", "", prompt);
-    button.onclick = () => submit(prompt);
-    $("prompts").append(button);
-  }
+  setStatus("");
 }
 
-function submit(question) {
+function submit(question, preset = false) {
   const text = question.trim();
   if (!text) {
-    $("notice").textContent = "Enter a question first.";
+    setStatus("Enter a question first.");
     $("question").focus();
     return;
   }
-  $("notice").textContent = "";
-  for (const message of [{user:true, text}, {user:false, text:answer(current, text)}]) {
+  setStatus("");
+  for (const message of [{user:true, text, preset}, {user:false, text:answer(current, text)}]) {
     histories[current].push(message);
     showMessage(message);
   }
@@ -69,15 +102,50 @@ function submit(question) {
 for (const [key, mode] of Object.entries(modes)) {
   const button = element("button", "mode");
   button.dataset.mode = key;
+  button.setAttribute("aria-pressed", String(key === current));
   const badge = element("span", "mode-icon");
   badge.append(icon(mode.icon));
   const names = element("span", "mode-text");
-  names.append(element("span", "name", mode.name), element("span", "desc", mode.description));
+  for (const [style, text] of [["name", mode.name], ["desc", mode.description]]) {
+    const label = element("span", style);
+    labels.push([label, text]);
+    names.append(label);
+  }
   button.append(badge, names);
   button.onclick = () => selectMode(key);
   $("modes").append(button);
 }
-selectMode(current);
+
+function renderLanguage() {
+  const thread = $("thread");
+  const atEnd = thread.scrollHeight - thread.scrollTop - thread.clientHeight <= 2;
+  // Keep the same turn in view when the translated paragraphs change height.
+  const anchor = Array.from(thread.children).findIndex(row =>
+    row.getBoundingClientRect().bottom > thread.getBoundingClientRect().top);
+  document.documentElement.lang = language === "zh" ? "zh-Hans" : "en";
+  document.documentElement.dataset.language = language;
+  for (const button of $("languages").querySelectorAll("button")) {
+    button.setAttribute("aria-pressed", String(button.dataset.lang === language));
+  }
+  for (const [node, text] of labels) renderText(node, text);
+  $("question").placeholder = displayText("Ask the fictional president…", language, "\n");
+  $("question").rows = language === "both" ? 2 : 1;
+  thread.setAttribute("aria-label", displayText("Fictional conversation", language));
+  renderPrompts();
+  renderThread();
+  if (atEnd) thread.scrollTop = thread.scrollHeight;
+  else if (anchor >= 0) thread.scrollTop += thread.children[anchor].getBoundingClientRect().top - thread.getBoundingClientRect().top;
+  setStatus(statusText);
+}
+for (const button of $("languages").querySelectorAll("button")) {
+  button.onclick = () => {
+    if (language === button.dataset.lang) return;
+    language = button.dataset.lang;
+    try { localStorage.setItem(preferenceKey, language); } catch {}
+    renderLanguage();
+  };
+}
+renderLanguage();
 
 $("composer").onsubmit = event => {
   event.preventDefault();
@@ -92,7 +160,7 @@ $("question").onkeydown = event => {
 };
 
 $("copyBtn").onclick = async () => {
-  const text = transcript(current, histories[current]);
+  const text = transcript(current, histories[current], language);
   try {
     await navigator.clipboard.writeText(text);
   } catch {
@@ -105,12 +173,13 @@ $("copyBtn").onclick = async () => {
     field.remove();
     $("copyBtn").focus();
     if (!copied) {
-      window.prompt("Copy this fictional transcript to share on X.", text);
+      window.prompt(displayText("Copy this fictional transcript to share on X.", language), text);
       return;
     }
   }
-  $("notice").textContent = "Conversation copied. Ready to paste into X.";
+  setStatus("Conversation copied. Ready to paste into X.");
 };
+
 window.addEventListener("beforeinstallprompt", event => {
   event.preventDefault();
   installPrompt = event;
@@ -123,6 +192,6 @@ $("install").onclick = async () => {
 };
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("./sw.js").catch(() => {
-    $("notice").textContent = "Offline setup unavailable. You can still chat here.";
+    setStatus("Offline setup unavailable. You can still chat here.");
   });
 }

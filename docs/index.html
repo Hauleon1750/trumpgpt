@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#f8f6ef"><meta name="description" content="An unofficial political comedy chat. Choose a mode and interview a fictional president. All answers are fictional."><link rel="manifest" href="./manifest.webmanifest"><link rel="apple-touch-icon" href="./assets/icon-180.png"><link rel="icon" href="./assets/icon-192.png"><link rel="stylesheet" href="./style.css"><title>TrumpGPT — An Unofficial AI Satire</title></head>
+<html lang="en" translate="no"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#f8f6ef"><meta name="description" content="An unofficial political comedy chat. Choose a mode and interview a fictional president. All answers are fictional."><link rel="manifest" href="./manifest.webmanifest"><link rel="apple-touch-icon" href="./assets/icon-180.png"><link rel="icon" href="./assets/icon-192.png"><link rel="stylesheet" href="./style.css"><title>TrumpGPT — An Unofficial AI Satire</title></head>
 <body>
 <svg class="defs" xmlns="http://www.w3.org/2000/svg"><defs>
 <symbol id="mic" viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="13" rx="3"/><path d="M5 10v2a7 7 0 0 0 14 0v-2M12 19v3m-4 0h8"/></symbol>
@@ -9,12 +9,20 @@
 <symbol id="send" viewBox="0 0 24 24"><path d="m3 10 18-7-7 18-3-8zM11 13 21 3"/></symbol>
 </defs></svg>
 <div class="sheet">
-<header><div class="bar"><span class="brand"><span class="brandmark"><svg><use href="#mic"/></svg></span> THE SATIRE DESK</span><button id="copyBtn"><svg><use href="#copy"/></svg> Copy conversation</button></div>
-<div class="mast"><div class="mast-type"><span class="mono red edition">VOL. 01 &nbsp;/&nbsp; COMEDY EDITION</span><h1>Trump<span>GPT</span></h1><p>An Unofficial AI Satire</p></div><img class="art" src="./assets/press-mics.png" alt="" width="775" height="365"></div></header>
-<main><section aria-labelledby="mode-title"><h2 id="mode-title" class="label"><span>01</span> SELECT A MODE</h2><div id="modes"></div></section>
-<section class="brief" aria-labelledby="room"><div class="room-head"><div class="room-title"><span class="label"><span>02</span> TRANSCRIPT</span><h2 id="room">The briefing room</h2></div><span class="live"><i></i> ON AIR</span></div>
-<div class="body"><div id="thread" role="log" aria-label="Fictional conversation" tabindex="0"></div><div class="suggest"><span class="label">TRY ASKING</span><div id="prompts"></div></div>
-<form id="composer"><label class="sr" for="question">Your question</label><textarea id="question" rows="1" maxlength="1000" placeholder="Ask the fictional president…"></textarea><button class="send" type="submit">Send <svg><use href="#send"/></svg></button></form></div></section></main>
-<footer><span><b>ⓘ</b> Unofficial AI Satire. All answers are fictional.</span><button id="install">Install app <span aria-hidden="true">↗</span></button></footer><p id="notice" role="status"></p></div>
-<dialog id="help"><h2>Install TrumpGPT</h2><p>On iPhone, open this page in Safari, tap Share, then Add to Home Screen. On Android, open the browser menu and choose Install app or Add to Home screen.</p><p>Unofficial AI Satire. All answers are fictional.</p><form method="dialog"><button>Close</button></form></dialog>
+<header><div class="bar"><span class="brand"><span class="brandmark"><svg><use href="#mic"/></svg></span> <span data-i18n>THE SATIRE DESK</span></span><button id="copyBtn"><svg><use href="#copy"/></svg> <span data-i18n>Copy conversation</span></button></div>
+<div class="mast"><div class="mast-type"><span class="mono red edition"><span data-i18n>VOL. 01 / COMEDY EDITION</span></span><h1>Trump<span>GPT</span></h1><p><span data-i18n>An Unofficial AI Satire</span></p></div><img class="art" src="./assets/press-mics.png" alt="" width="775" height="365"></div></header>
+<main><section aria-labelledby="mode-title"><h2 id="mode-title" class="label"><span>01</span> <span data-i18n>SELECT A MODE</span></h2><div id="modes"></div></section>
+<section class="brief" aria-labelledby="room"><div class="room-head"><div class="room-title"><span class="label"><span>02</span> <span data-i18n>TRANSCRIPT</span></span><h2 id="room"><span data-i18n>The briefing room</span></h2></div><span class="live"><i></i> <span data-i18n>ON AIR</span></span></div>
+<div id="languages" class="languages" role="group" aria-labelledby="language-label">
+  <span class="label" id="language-label" data-i18n>Display language</span>
+  <div class="choices">
+    <button type="button" data-lang="en" lang="en">English</button>
+    <button type="button" data-lang="both" lang="zh-Hans">中英对照</button>
+    <button type="button" data-lang="zh" lang="zh-Hans">中文</button>
+  </div>
+</div>
+<div class="body"><div id="thread" role="log" aria-label="Fictional conversation" tabindex="0"></div><div class="suggest"><span class="label"><span data-i18n>TRY ASKING</span></span><div id="prompts"></div></div>
+<form id="composer"><label class="sr" for="question"><span data-i18n>Your question</span></label><textarea id="question" rows="1" maxlength="1000" placeholder="Ask the fictional president…"></textarea><button class="send" type="submit"><span data-i18n>Send</span> <svg><use href="#send"/></svg></button></form></div></section></main>
+<footer><span><b>ⓘ</b> <span data-i18n>Unofficial AI Satire. All answers are fictional.</span></span><button id="install"><span data-i18n>Install app</span> <span aria-hidden="true">↗</span></button></footer><p id="notice" role="status"></p></div>
+<dialog id="help"><h2><span data-i18n>Install TrumpGPT</span></h2><p><span data-i18n>On iPhone, open this page in Safari, tap Share, then Add to Home Screen. On Android, open the browser menu and choose Install app or Add to Home screen.</span></p><p><span data-i18n>Unofficial AI Satire. All answers are fictional.</span></p><form method="dialog"><button><span data-i18n>Close</span></button></form></dialog>
 <script type="module" src="./app.js"></script></body></html>

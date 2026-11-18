@@ -1,3 +1,5 @@
+import {displayText} from "./locale.mjs";
+
 export const disclaimer = "Unofficial AI Satire. All answers are fictional.";
 
 export const modes = {
@@ -79,9 +81,9 @@ export const modes = {
 };
 
 const topics = [
-  ["food", /\b(lunch|coffee|fridge|food|soup|kitchen|breakfast|pizza|dinner|sandwich|menu)\b/i],
-  ["tech", /\b(wi[ -]?fi|router|printer|mic|microphone|computer|tech|phone|password|internet)\b/i],
-  ["work", /\b(productivity|work|meetings?|office|calendar|follow[ -]?up|schedule|agenda)\b/i]
+  ["food", /\b(lunch|coffee|fridge|food|soup|kitchen|breakfast|pizza|dinner|sandwich|menu)\b|午餐|午饭|早饭|晚饭|早餐|晚餐|咖啡|冰箱|吃什么|食物|厨房|菜单|三明治|披萨|饼干|喝汤|汤品/i],
+  ["tech", /\b(wi[ -]?fi|router|printer|mic|microphone|computer|tech|phone|password|internet)\b|无线网|网络|路由器|打印机|麦克风|话筒|电脑|技术|手机|密码|上网|信号/i],
+  ["work", /\b(productivity|work|meetings?|office|calendar|follow[ -]?up|schedule|agenda)\b|效率|工作|开会|会议|办公室|办公|日程|日历|追问|议程|加班/i]
 ];
 
 export function createResponder(random = Math.random) {
@@ -101,7 +103,12 @@ export function createResponder(random = Math.random) {
   };
 }
 
-export function transcript(mode, messages) {
-  const turns = messages.map(({user, text}) => (user ? "Question: " : "Fictional president: ") + text);
-  return ["TrumpGPT — " + disclaimer, modes[mode].name, ...turns].join("\n\n");
+export function transcript(mode, messages, language = "en") {
+  const turns = messages.map(({user, text, preset}) => {
+    const label = displayText(user ? "Question" : "Fictional president", language);
+    const body = displayText(text, language, "\n", !user || preset === true);
+    return label + (language === "zh" ? "：" : ": ") + body;
+  });
+  return ["TrumpGPT — " + displayText(disclaimer, language, "\n"),
+    displayText(modes[mode].name, language), ...turns].join("\n\n");
 }

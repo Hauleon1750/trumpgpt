@@ -49,20 +49,23 @@ test("service worker installs local assets, serves an offline launch, and isolat
   let deleted = [];
   const cache = {
     async addAll(paths) {
-      for (const path of paths) entries.set(new URL(path,scope).href, await read(path === "./" ? "index.html" : path));
+      for (const request of paths) {
+        const path = request.url.slice(scope.length);
+        entries.set(request.url, await read(path || "index.html"));
+      }
     },
     match(request) {return entries.get(request.url || request);}
   };
   const caches = {
-    open: async () => cache, keys: async () => [prefix + "v1", prefix + "old", "other-project"],
+    open: async () => cache, keys: async () => [prefix + "v1.1", prefix + "v1", "other-project"],
     delete: async key => deleted.push(key)
   };
-  const self = {registration:{scope}, clients:{claim() {}}, addEventListener(type,fn){handlers[type] = fn;}};
-  vm.runInNewContext((await read("sw.js")).toString(), {self, caches, URL, fetch:async () => {throw Error("offline");}});
+  const self = {registration:{scope}, skipWaiting() {}, clients:{claim() {}}, addEventListener(type,fn){handlers[type] = fn;}};
+  vm.runInNewContext((await read("sw.js")).toString(), {self, caches, URL, Request, fetch:async () => {throw Error("offline");}});
   await new Promise((resolve,reject) => handlers.install({waitUntil: promise => promise.then(resolve,reject)}));
   await new Promise((resolve,reject) => handlers.activate({waitUntil: promise => promise.then(resolve,reject)}));
-  assert.deepEqual(deleted,[prefix + "old"]);
-  for (const path of ["","?from=homescreen","app.js","comedy.mjs","style.css","assets/press-mics.png"]) {
+  assert.deepEqual(deleted,[prefix + "v1"]);
+  for (const path of ["","?from=homescreen","app.js","comedy.mjs","locale.mjs","style.css","assets/press-mics.png"]) {
     const request = {url:scope + path, method:"GET", mode:path.includes(".") ? "cors" : "navigate"};
     const body = await new Promise(resolve => handlers.fetch({request, respondWith:resolve}));
     assert.ok(body.length);
